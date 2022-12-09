@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body>
+        <h2 class="text-center">Angular JS AJAX Application</h2>
+        <div ng-app="" ng-controller="employeeController" style="width:500px;" class="container-fluid text-center">
+            <row class="justify-content-center">
+            <table class="table table-info table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                </tr>
+                <tr ng-repeat="employee in employees">
+                    <td>{{employee.id}}</td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.age}}</td>
+                    <td>{{employee.salary}}</td>
+                </tr> 
+            </table>
+            <script>
+                function employeeController($scope, $http){
+                    var url = "http://localhost/pdc20/api_r.php";
+                    $http.get(url).success(function(response){
+                        $scope.employees = response;
+                    })
+                }
+            </script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+            </row>
+        </div>
+    </body>
+</html>
